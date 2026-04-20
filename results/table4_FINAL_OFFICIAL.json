@@ -1,0 +1,67 @@
+{
+  "meta": {
+    "description": "Table 4 final validated results — Fix 8 (IP isolation) + Fix 9 (feature calibration)",
+    "split": "ring-based 60/20/20",
+    "scale": "medium (10k users, 30 ticketing + 25 ghost hotel + 25 ATO rings)",
+    "seeds": [42, 123, 0],
+    "epochs": 200,
+    "patience": 25,
+    "leakage": "0% transductive (verified)",
+    "feature_calibration": "all Cohen d < 0.15 post Fix-9",
+    "generated": "2026-04-19"
+  },
+  "results": {
+    "MLP": {
+      "seeds": {
+        "42":  {"auc": 0.9385, "ap": 0.8165, "f1": 0.7895},
+        "123": {"auc": 0.9458, "ap": 0.8541, "f1": 0.8259},
+        "0":   {"auc": 0.9236, "ap": 0.7683, "f1": 0.7929}
+      },
+      "mean_auc": 0.9360, "std_auc": 0.0092,
+      "mean_ap":  0.8130, "std_ap":  0.0351,
+      "mean_f1":  0.8028,
+      "delta_auc": null
+    },
+    "GraphSAGE": {
+      "seeds": {
+        "42":  {"auc": 0.9894, "ap": 0.9761, "f1": 0.9727},
+        "123": {"auc": 0.9959, "ap": 0.9884, "f1": 0.9786},
+        "0":   {"auc": 0.9915, "ap": 0.9744, "f1": 0.9658}
+      },
+      "mean_auc": 0.9923, "std_auc": 0.0027,
+      "mean_ap":  0.9796, "std_ap":  0.0062,
+      "mean_f1":  0.9724,
+      "delta_auc": 0.056
+    },
+    "HAN": {
+      "seeds": {
+        "42":  {"auc": 0.9336, "ap": 0.8109, "f1": 0.7887},
+        "123": {"auc": 0.9455, "ap": 0.8494, "f1": 0.8089},
+        "0":   {"auc": 0.9298, "ap": 0.7853, "f1": 0.7693}
+      },
+      "mean_auc": 0.9363, "std_auc": 0.0067,
+      "mean_ap":  0.8152, "std_ap":  0.0263,
+      "mean_f1":  0.7890,
+      "delta_auc": 0.000,
+      "note": "null result — tied with MLP, negative result"
+    },
+    "RGCN": {
+      "seeds": {
+        "42":  {"auc": 0.9730, "ap": 0.9430, "f1": 0.9260},
+        "123": {"auc": 0.9805, "ap": 0.9620, "f1": 0.9374},
+        "0":   {"auc": 0.9678, "ap": 0.9273, "f1": 0.8831}
+      },
+      "mean_auc": 0.9738, "std_auc": 0.0052,
+      "mean_ap":  0.9441, "std_ap":  0.0142,
+      "mean_f1":  0.9155,
+      "delta_auc": 0.038
+    }
+  },
+  "structural_diagnostics": {
+    "ip_auc_post_fix8": 0.8268,
+    "combined_structural_auc": 0.9737,
+    "transductive_leakage_pct": 0.0,
+    "feature_cohen_d_max": 0.148,
+    "feature_cohen_d_all_ok": true
+  }
+}

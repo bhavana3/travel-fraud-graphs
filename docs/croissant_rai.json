@@ -1,0 +1,163 @@
+{
+  "@context": {
+    "@language": "en",
+    "@vocab": "https://schema.org/",
+    "sc": "https://schema.org/",
+    "ml": "http://mlcommons.org/schema/",
+    "cr": "http://mlcommons.org/croissant/"
+  },
+  "@type": "sc:Dataset",
+  "name": "TravelFraudBench",
+  "alternateName": "TFG",
+  "description": "A configurable evaluation framework and synthetic benchmark dataset for measuring GNN fraud ring detection capabilities in travel networks. Contains three structurally distinct fraud ring types: ticketing fraud rings (star topology), ghost hotel schemes (bipartite reviewer-hotel cliques), and account takeover rings (loyalty transfer chains). 9 node types, 11 edge relations, per-node binary labels, ring membership IDs, and ring type annotations. Available at five scales (toy to xlarge).",
+  "url": "https://huggingface.co/datasets/YOUR_ORG/travel-fraud-bench",
+  "version": "1.0.0",
+  "datePublished": "2026-05-01",
+  "license": "https://opensource.org/licenses/MIT",
+  "keywords": [
+    "fraud detection",
+    "graph neural networks",
+    "benchmark",
+    "evaluation",
+    "travel",
+    "heterogeneous graph",
+    "synthetic dataset",
+    "anomaly detection",
+    "GNN",
+    "fraud ring",
+    "ticketing fraud",
+    "account takeover",
+    "ghost hotel"
+  ],
+  "creator": {
+    "@type": "sc:Person",
+    "name": "TFG Authors",
+    "email": "YOUR_EMAIL@example.com"
+  },
+  "citation": "TFG Authors (2026). TravelFraudBench: A Configurable Evaluation Framework for GNN Fraud Ring Detection in Travel Networks. NeurIPS 2026 Evaluations & Datasets Track.",
+
+  "cr:responsibleAI": {
+    "privacy": {
+      "pii_present": false,
+      "assessment": "Fully synthetic dataset. No real individuals, transactions, or personal information were collected, used, or included. All user IDs, behavioral parameters, and graph structures are generated from parameterized probability distributions calibrated to industry-level aggregates (not individual records). The generator does not output any PII.",
+      "gdpr_applicability": "Not applicable — no personal data.",
+      "ccpa_applicability": "Not applicable — no personal data."
+    },
+    "bias": {
+      "known_biases": [
+        {
+          "type": "Class imbalance",
+          "description": "Default fraud rate is ~16–17%, which is significantly higher than real-world travel fraud rates (<1%). This is intentional for balanced benchmark evaluation but must be acknowledged when comparing metrics to production systems.",
+          "mitigation": "The fraud rate is a fully configurable parameter. Users should set n_ticketing_rings, n_ghost_hotel_rings, n_ato_rings to target deployment-relevant fraud rates."
+        },
+        {
+          "type": "Country distribution",
+          "description": "User country distribution reflects documented top travel-originating markets (US 20%, China 15%, Germany 10%, UK 8%, France 7%, Japan 6%, Canada 5%, Australia 5%). This may not reflect the country distribution of fraud in specific regional deployments.",
+          "mitigation": "Country weights are configurable in TravelerAgent."
+        },
+        {
+          "type": "Ring topology simplification",
+          "description": "Each fraud ring is independent. In practice, fraudsters may operate across ring types simultaneously (cross-ring contamination), which is not simulated by default.",
+          "mitigation": "This is documented as a known limitation. Future work can extend the builder."
+        },
+        {
+          "type": "Temporal dynamics absent",
+          "description": "Fraud ring timestamps are sampled uniformly. Real rings show burst temporal patterns (coordinated activity within hours). This limits evaluation of temporal GNN methods.",
+          "mitigation": "Documented as a known limitation. Temporal burst mode is planned for v1.1."
+        }
+      ]
+    },
+    "intended_use": {
+      "primary": "Benchmarking and evaluating GNN-based fraud detection algorithms in research settings. Training and comparing models on graph-structured fraud detection tasks.",
+      "secondary": "Educational use for teaching GNN fraud detection. Ablation studies on fraud ring topology effects.",
+      "not_intended_for": [
+        "Deployment as a production fraud detection system without real-world calibration.",
+        "Evaluating non-graph or tabular fraud detection methods as a primary benchmark.",
+        "Claims about specific fraud rates or patterns in any real travel platform."
+      ]
+    },
+    "prohibited_use": [
+      "Using the ring topology designs as a guide to evade fraud detection systems.",
+      "Representing TFG-generated fraud rings as representative of any specific real fraud organization.",
+      "Using as the sole basis for model selection in production fraud detection without real-world validation."
+    ],
+    "potential_harms": [
+      {
+        "harm": "Misrepresentation of fraud rates: the ~16% default fraud rate is much higher than real rates. Models trained only on TFG may be miscalibrated for production.",
+        "severity": "Moderate",
+        "mitigation": "Paper prominently notes default fraud rate and provides fraud_rate axis in the controlled difficulty study."
+      },
+      {
+        "harm": "Topology disclosure: the documented ring topologies describe structural patterns that, if studied by adversaries, could inform evasion strategies.",
+        "severity": "Low",
+        "mitigation": "Ring topologies are based on publicly documented fraud patterns already known in the fraud prevention community (IATA, SEON, Forter reports). No novel evasion techniques are disclosed."
+      }
+    ],
+    "data_collection": {
+      "method": "Fully synthetic agent-based simulation. No real data collected.",
+      "sources": [],
+      "time_period": "N/A — generated on demand.",
+      "consent": "N/A — no human subjects."
+    },
+    "maintenance": {
+      "maintainer": "TFG Authors",
+      "update_schedule": "Bug fixes released as needed. Major version releases planned annually.",
+      "deprecation_policy": "Datasets hosted on HuggingFace will be maintained for a minimum of 5 years from publication.",
+      "contact": "GitHub Issues: https://github.com/YOUR-ORG/travel-fraud-bench"
+    },
+    "license_details": {
+      "code": "MIT License",
+      "generated_data": "MIT License — freely usable for research and commercial purposes with attribution."
+    }
+  },
+
+  "distribution": [
+    {
+      "@type": "cr:FileObject",
+      "@id": "nodes-user-small",
+      "name": "User nodes (small scale)",
+      "contentUrl": "https://huggingface.co/datasets/YOUR_ORG/travel-fraud-bench/resolve/main/small/nodes/user.csv",
+      "encodingFormat": "text/csv"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "nodes-user-medium",
+      "name": "User nodes (medium scale)",
+      "contentUrl": "https://huggingface.co/datasets/YOUR_ORG/travel-fraud-bench/resolve/main/medium/nodes/user.csv",
+      "encodingFormat": "text/csv"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "metadata-medium",
+      "name": "Dataset metadata (medium scale)",
+      "contentUrl": "https://huggingface.co/datasets/YOUR_ORG/travel-fraud-bench/resolve/main/medium/metadata.json",
+      "encodingFormat": "application/json"
+    }
+  ],
+
+  "recordSet": [
+    {
+      "@type": "cr:RecordSet",
+      "@id": "user-nodes",
+      "name": "User Nodes",
+      "description": "One row per user account. Contains 11 behavioral features, binary is_fraud label, ring_id (=-1 for legitimate nodes), and ring_type (0=legit, 1=ticketing, 2=ghost_hotel, 3=ato).",
+      "field": [
+        {"@type": "cr:Field", "name": "node_id",              "dataType": "sc:Integer", "description": "Unique user node index (0-based, local to node type)"},
+        {"@type": "cr:Field", "name": "is_fraud",             "dataType": "sc:Integer", "description": "0=legitimate, 1=fraud — primary classification label"},
+        {"@type": "cr:Field", "name": "ring_id",              "dataType": "sc:Integer", "description": "Ring membership ID. -1 for legitimate nodes. Same ID = same ring."},
+        {"@type": "cr:Field", "name": "ring_type",            "dataType": "sc:Integer", "description": "0=legitimate, 1=ticketing_fraud_ring, 2=ghost_hotel_ring, 3=account_takeover_ring"},
+        {"@type": "cr:Field", "name": "account_age_days",     "dataType": "sc:Float",   "description": "Days since account creation"},
+        {"@type": "cr:Field", "name": "booking_count_30d",    "dataType": "sc:Integer", "description": "Bookings in last 30 days"},
+        {"@type": "cr:Field", "name": "cancellation_rate",    "dataType": "sc:Float",   "description": "Fraction of bookings cancelled (0–1)"},
+        {"@type": "cr:Field", "name": "chargeback_count",     "dataType": "sc:Integer", "description": "Total chargebacks ever filed"},
+        {"@type": "cr:Field", "name": "distinct_device_count","dataType": "sc:Integer", "description": "Distinct devices used in 90 days"},
+        {"@type": "cr:Field", "name": "distinct_ip_count",    "dataType": "sc:Integer", "description": "Distinct IPs used in 90 days"},
+        {"@type": "cr:Field", "name": "country_code",         "dataType": "sc:Integer", "description": "ISO-3166-1 numeric country code"},
+        {"@type": "cr:Field", "name": "is_loyalty_member",    "dataType": "sc:Integer", "description": "Binary: active loyalty account"},
+        {"@type": "cr:Field", "name": "avg_booking_value_usd","dataType": "sc:Float",   "description": "Average booking value in USD"},
+        {"@type": "cr:Field", "name": "referral_count",       "dataType": "sc:Integer", "description": "Users referred by this account"},
+        {"@type": "cr:Field", "name": "velocity_score",       "dataType": "sc:Float",   "description": "Bookings per hour (max 24h window)"}
+      ]
+    }
+  ]
+}

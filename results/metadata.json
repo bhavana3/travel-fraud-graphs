@@ -1,0 +1,17 @@
+{
+  "seed": 42,
+  "n_users_total": 10000,
+  "n_hotels_total": 854,
+  "n_flights_total": 1500,
+  "n_bookings_total": 26910,
+  "n_devices_total": 14275,
+  "n_ips_total": 22853,
+  "n_reviews_total": 7798,
+  "n_payments_total": 12842,
+  "n_loyalties_total": 5845,
+  "n_ticketing_rings": 30,
+  "n_ghost_hotel_rings": 25,
+  "n_ato_rings": 25,
+  "total_rings": 80,
+  "fraud_user_ratio": 0.1295
+}

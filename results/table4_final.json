@@ -1,0 +1,38 @@
+{
+  "MLP": {
+    "auc": 0.8315,
+    "ap": 0.5284,
+    "f1": 0.5695
+  },
+  "GraphSAGE": {
+    "auc": 0.9903,
+    "ap": 0.9607,
+    "f1": 0.9348
+  },
+  "GIN": {
+    "auc": 0.9765,
+    "ap": 0.8921,
+    "f1": 0.7521
+  },
+  "HAN": {
+    "auc": 0.8105,
+    "ap": 0.5207,
+    "f1": 0.6218
+  },
+  "RGCN": {
+    "auc": 1.0,
+    "ap": 1.0,
+    "f1": 0.9989
+  },
+  "setup": {
+    "scale": "medium",
+    "n_users": 10000,
+    "fraud_ratio": 0.1295,
+    "seed": 42,
+    "split": "60/20/20 stratified",
+    "hardware": "CPU (Intel)",
+    "hidden_dim": 128,
+    "rev_edges": true,
+    "note": "Homogeneous models (SAGE/GIN) use user self-loops; RGCN/HAN use full 22-edge-type graph with reverse edges"
+  }
+}

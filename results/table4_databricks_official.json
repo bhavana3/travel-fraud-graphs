@@ -1,0 +1,50 @@
+{
+  "source": "Databricks ML Runtime 14.x, GPU cluster, notebook 02_gnn_baselines.py",
+  "scale": "medium",
+  "n_users": 10000,
+  "fraud_ratio": 0.1295,
+  "seed": 42,
+  "split": "60/20/20 stratified",
+  "MLP": {
+    "auc": 0.8264,
+    "ap": 0.4497,
+    "f1": 0.5895
+  },
+  "GraphSAGE": {
+    "auc": 1.0,
+    "ap": 1.0,
+    "f1": 1.0
+  },
+  "HAN": {
+    "auc": 1.0,
+    "ap": 1.0,
+    "f1": 1.0
+  },
+  "RGCN": {
+    "auc": 1.0,
+    "ap": 1.0,
+    "f1": 1.0
+  },
+  "ring_recovery": {
+    "MLP": {
+      "Ticketing": 0.12,
+      "Ghost Hotel": 0.08,
+      "ATO": 0.25
+    },
+    "GraphSAGE": {
+      "Ticketing": 1.0,
+      "Ghost Hotel": 1.0,
+      "ATO": 1.0
+    },
+    "HAN": {
+      "Ticketing": 1.0,
+      "Ghost Hotel": 1.0,
+      "ATO": 1.0
+    },
+    "RGCN": {
+      "Ticketing": 1.0,
+      "Ghost Hotel": 1.0,
+      "ATO": 1.0
+    }
+  }
+}
